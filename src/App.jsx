@@ -32,7 +32,7 @@ export default function App() {
     if (isTestRunning) {
       intervalId = setInterval(() => {
         setSeconds((prevSeconds) => {
-          if (prevSeconds >= 10) {
+          if (prevSeconds >= 60) {
             setEndTime(new Date())
             setIsTestRunning(false)
             return prevSeconds
@@ -100,7 +100,6 @@ export default function App() {
   }
 
   const calculateWordsPerMinute = () => {
-    console.log(';stat', startTime, 'end ', endTime)
     if (startTime && endTime) {
       const minutes = (endTime - startTime) / 60000 // convert milliseconds to minutes
       const wordsPerMinute = Math.round(
@@ -112,8 +111,6 @@ export default function App() {
   }
 
   const calculateAccuracy = () => {
-    console.log(correctWords, '+', incorrectWords)
-
     const totalWords = correctWords + incorrectWords
     const accuracy = (correctWords / totalWords) * 100
     return accuracy.toFixed(2)
