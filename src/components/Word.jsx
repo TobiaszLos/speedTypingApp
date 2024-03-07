@@ -38,5 +38,5 @@ export const Word = ({
     setColor('text-gray-500')
   }, [isTestRunning])
 
-  return <span className={`${color} ${border}  p-1 rounded`}>{name} </span>
+  return <span className={`${color} ${border}  p-1 rounded font-medium`}>{name} </span>
 }

@@ -5,7 +5,8 @@ import { StatisticsCard } from './components/StatisticsCard '
 
 const textJson = [...myText.text]
 import { useRandomElement } from './hooks/useRandomElement'
-
+import Button from './components/Button'
+import Input from './components/Input'
 export default function App() {
   const [text, setText] = useState(textJson[0])
   const [inputState, setInputState] = useState('')
@@ -19,7 +20,6 @@ export default function App() {
 
   const [currentWord, setCurrentWord] = useState('')
 
-  // custom hook
   const { getRandomElementFromArray } = useRandomElement(textJson)
 
   useEffect(() => {
@@ -118,6 +118,9 @@ export default function App() {
 
   return (
     <div className="mt-14 flex flex-col gap-8 items-center">
+
+   <h1 className='text-3xl drop-shadow-lg pb-8'>Speed Typing App</h1>
+
       <div className=" w-[600px]">
         {text.split(' ').map((item, index) => (
           <Word
@@ -131,11 +134,12 @@ export default function App() {
         ))}
       </div>
       <div className="flex flex-col">
-        <input
+        <Input
           type="text"
-          className="border"
+          className="bg-gray-50 border border-gray-300 text-gray-900 text-lg font-medium rounded-lg py-1 px-4 "
           onChange={inputChange}
           onKeyUp={inputKeyUp}
+          placeholder={`${text.split(' ')[currentWordIndex]}`}
           value={inputState}
           disabled={!isTestRunning}
         />
@@ -144,19 +148,19 @@ export default function App() {
         {seconds} / {`60s`}
       </div>
       {isTestRunning ? (
-        <button
-          className="border border-red-800 py-1 px-6 rounded font-semibold"
+        <Button
+          type={'secondary'}
           onClick={resetTest}
         >
           Reset
-        </button>
+        </Button>
       ) : (
-        <button
-          className="border border-green-800 py-1 px-6 rounded font-semibold"
+        <Button
+          type={'primary'}
           onClick={handleStart}
         >
           Start Test
-        </button>
+        </Button>
       )}
       {endTime && (
         <div className="flex justify-center items-center ">
